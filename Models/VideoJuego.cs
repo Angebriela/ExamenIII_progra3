@@ -1,4 +1,6 @@
-﻿namespace ExamenIII.Models
+﻿using System.Globalization;
+using System.ComponentModel.DataAnnotations;
+namespace ExamenIII.Models
 {
     public class VideoJuego : Media
     {

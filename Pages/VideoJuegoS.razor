@@ -1,12 +1,16 @@
 ﻿@page "/counter"
-
+@using Blazored.LocalStorage;
+@using Models;
 <PageTitle>Counter</PageTitle>
 
-<h1>Counter</h1>
+<h1>Video Juegos</h1>
 
 <p role="status">Current count: @currentCount</p>
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+
+
 
 @code {
     private int currentCount = 0;

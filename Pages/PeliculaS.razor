@@ -1,0 +1,60 @@
+﻿@page "/"
+
+<PageTitle>Ingreso de video</PageTitle>
+
+@using Models
+@inject Blazored.LocalStorage.ISyncLocalStorageService localStorage
+
+<h1>Llenar los siguientes campos</h1>
+
+<EditForm Model="@pelicula" OnValidSubmit="@GuardarPelicula">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col col-4">
+                <label for="Titulo" class="form-label">Titulo: </label>
+                <InputText id="Titulo" class="form-control" @bind-Value="pelicula.Titulo" />
+                <ValidationMessage For="() => pelicula.Titulo" />
+            </div>
+            <div class="row mt-3">
+                <div class="col col-4">
+                    <label for="Genero" class="form-label">Genero: </label>
+                    <InputText id="Genero" class="form-control" @bind-Value="pelicula.Genero" />
+                    <ValidationMessage For="() => pelicula.Genero" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</EditForm>
+
+
+
+
+@code {
+    private Pelicula pelicula = new Pelicula();
+	private List<Pelicula> peliculas = new List<Pelicula>();
+
+    private void GuardarPelicula()
+    {
+        peliculas.Add(pelicula);
+        // Guardar la lista de starships en LocalStorage como JSON
+        localStorage.SetItem("starships", peliculas);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Recuperar la lista de starships desde LocalStorage a una variable var
+        var savedPeliculas = localStorage.GetItem<List<Pelicula>>("peliculas");
+
+        // Validar si la lista fue recuperada correctamente, copiarla a la lista
+        if (savedPeliculas!= null)
+        {
+            peliculas = savedPeliculas;
+        }
+    }
+
+}

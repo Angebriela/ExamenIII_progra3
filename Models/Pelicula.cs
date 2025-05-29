@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Globalization;
+using System.ComponentModel.DataAnnotations;
 namespace ExamenIII.Models
 {
     public class Pelicula : Media
